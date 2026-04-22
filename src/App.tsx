@@ -88,8 +88,7 @@ function App() {
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-            gap: '40px', // Increased gap for better mobile spacing
-            alignItems: 'start'
+            gap: '40px'
           }}>
             {products.map((product, index) => (
               <ProductCard key={index} {...product} />
@@ -103,9 +102,17 @@ function App() {
         textAlign: 'center', 
         padding: '60px 20px', 
         borderTop: '1px solid rgba(0, 0, 0, 0.05)',
-        color: 'rgba(0, 0, 0, 0.3)',
+        color: 'rgba(0, 0, 0, 0.5)',
         fontSize: '0.9rem'
       }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px' }}>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', transition: 'color 0.3s' }} onMouseOver={e => e.currentTarget.style.color = 'var(--accent-gold)'} onMouseOut={e => e.currentTarget.style.color = 'inherit'}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', transition: 'color 0.3s' }} onMouseOver={e => e.currentTarget.style.color = 'var(--accent-gold)'} onMouseOut={e => e.currentTarget.style.color = 'inherit'}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+        </div>
         <p>&copy; {new Date().getFullYear()} Daiva Health. All rights reserved.</p>
       </footer>
     </div>
