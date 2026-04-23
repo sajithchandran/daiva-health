@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { motion } from 'framer-motion';
 
 const DivineBackground: FC = () => {
   return (
