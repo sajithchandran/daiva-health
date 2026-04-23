@@ -31,7 +31,7 @@ function App() {
     {
       title: 'athma CE',
       description: 'A comprehensive, open-source Hospital Information System (HIS) and Electronic Medical Record (EMR) product designed for modern healthcare facilities.',
-      githubUrl: 'https://github.com/daivahealth/athma-community',
+      githubUrl: 'https://github.com/daivahealth/athma-ce',
       icon: <Activity size={24} />,
       delay: 0.2
     },
