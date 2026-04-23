@@ -7,7 +7,7 @@
 
   color-scheme: light;
   color: #1a1a1a;
-  background-color: #f7f7f7;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,7 +17,7 @@
   --accent-gold: #d48c3b;
   --accent-gold-glow: rgba(212, 140, 59, 0.1);
   --daiva-red: #9c1c1c;
-  --divine-deep: #f9f9f9;
+  --divine-deep: #ffffff;
   --divine-blue: #f5f7fa;
   --divine-purple: #f8f6f9;
   --glass: rgba(0, 0, 0, 0.02);
