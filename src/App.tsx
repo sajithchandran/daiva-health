@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, Layers, Database } from 'lucide-react';
 import Header from './components/Header';
@@ -11,6 +11,10 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 
 function App() {
   const [view, setView] = useState<'home' | 'vision' | 'about' | 'terms' | 'privacy'>('home');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [view]);
 
   const footerLinkStyle = {
     background: 'none',
