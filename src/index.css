@@ -87,7 +87,6 @@ h1, h2, h3 {
 .glass-card:hover {
   background: var(--glass-hover);
   border-color: rgba(212, 140, 59, 0.22);
-  transform: translateY(-8px);
   box-shadow: 0 18px 40px rgba(212, 140, 59, 0.14), 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
@@ -171,14 +170,90 @@ h1, h2, h3 {
   box-shadow: 0 8px 20px rgba(212, 140, 59, 0.15);
 }
 
+/* ---------- Entrance and page-transition animations ---------- */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes fade-slide-in {
+  from { opacity: 0; translate: var(--from-x, 0) var(--from-y, 0); }
+}
+
+@keyframes fade-slide-out {
+  to { opacity: 0; translate: var(--to-x, 0) var(--to-y, 0); }
+}
+
+.anim-header {
+  --from-y: -20px;
+  animation: fade-slide-in 1s ease-out both;
+}
+
+.anim-intro {
+  animation: fade-in 1.5s ease 0.5s both;
+}
+
+/* Page switches: the current page animates out, then the next one animates in */
+.page {
+  animation: fade-slide-in var(--page-duration) ease both;
+}
+
+.page.is-leaving {
+  animation: fade-slide-out var(--page-duration) ease both;
+}
+
+.page--home    { --page-duration: 0.5s; --from-x: -20px; --to-x: 20px; }
+.page--content { --page-duration: 0.5s; --from-x: 20px;  --to-x: -20px; }
+.page--vision  { --page-duration: 0.6s; --from-y: 20px;  --to-y: -20px; }
+
+/* Scroll reveal: .is-visible is added once the element enters the viewport */
+.reveal {
+  opacity: 0;
+  translate: 0 30px;
+  transition: opacity 0.8s ease var(--reveal-delay, 0s), translate 0.8s ease var(--reveal-delay, 0s);
+}
+
+.reveal--fade {
+  translate: none;
+  transition-duration: 1s;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  translate: none;
+}
+
+/* Cards keep their hover transitions alongside the reveal */
+.glass-card.reveal {
+  transition:
+    opacity 0.8s ease var(--reveal-delay, 0s),
+    translate 0.8s ease var(--reveal-delay, 0s),
+    background 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .anim-header,
+  .anim-intro,
+  .page,
+  .page.is-leaving {
+    animation: none;
+  }
+
+  .reveal,
+  .glass-card.reveal {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+
   .glass-card,
   .github-link,
   .product-card::before {
     transition: none;
   }
 
-  .glass-card:hover,
   .github-link:hover {
     transform: none;
   }

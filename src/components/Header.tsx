@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { m } from 'framer-motion';
 
 const Header: FC = () => {
   return (
@@ -10,10 +9,8 @@ const Header: FC = () => {
       padding: '20px 20px',
       position: 'relative'
     }}>
-      <m.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+      <div
+        className="anim-header"
         style={{
           textAlign: 'center',
           display: 'flex',
@@ -40,7 +37,7 @@ const Header: FC = () => {
             filter: 'contrast(1.05) brightness(1.02)' // Match the vividness
           }} 
         />
-      </m.div>
+      </div>
     </header>
   );
 };

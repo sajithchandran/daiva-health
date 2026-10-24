@@ -1,9 +1,10 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
-import { m, AnimatePresence, MotionConfig, LazyMotion, domAnimation } from 'framer-motion';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import type { AnimationEvent } from 'react';
 import { Activity, Layers, Database, FileText, ShieldCheck, Gauge } from 'lucide-react';
 import Header from './components/Header';
 import DivineBackground from './components/DivineBackground';
 import ProductCard from './components/ProductCard';
+import { useReveal } from './hooks/useReveal';
 
 // Secondary pages load only when opened
 const VisionDetails = lazy(() => import('./components/VisionDetails'));
@@ -11,8 +12,34 @@ const AboutUs = lazy(() => import('./components/AboutUs'));
 const TermsConditions = lazy(() => import('./components/TermsConditions'));
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 
+type View = 'home' | 'vision' | 'about' | 'terms' | 'privacy';
+
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function App() {
-  const [view, setView] = useState<'home' | 'vision' | 'about' | 'terms' | 'privacy'>('home');
+  const [view, setView] = useState<View>('home');
+  // While leaving, the current page plays its exit animation; the next view is shown when it ends
+  const [leaving, setLeaving] = useState(false);
+  const nextView = useRef<View>('home');
+  const [catalogHeadingRef, catalogHeadingVisible] = useReveal<HTMLHeadingElement>();
+
+  const navigate = (next: View) => {
+    window.scrollTo(0, 0);
+    if (prefersReducedMotion()) {
+      setView(next);
+      return;
+    }
+    nextView.current = next;
+    setLeaving(true);
+  };
+
+  const handlePageAnimationEnd = (e: AnimationEvent) => {
+    if (e.target !== e.currentTarget || !leaving) return;
+    setLeaving(false);
+    setView(nextView.current);
+  };
+
+  const pageClass = (kind: 'home' | 'content' | 'vision') => `page page--${kind}${leaving ? ' is-leaving' : ''}`;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -91,29 +118,22 @@ function App() {
   ];
 
   return (
-    <LazyMotion features={domAnimation} strict>
-    <MotionConfig reducedMotion="user">
     <div style={{ minHeight: '100vh', position: 'relative' }}>
       <DivineBackground />
       <Header />
 
       <Suspense fallback={null}>
-      <AnimatePresence mode="wait">
         {view === 'home' ? (
-          <m.main 
+          <main
             key="home"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.5 }}
+            className={pageClass('home')}
+            onAnimationEnd={handlePageAnimationEnd}
             style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px 100px' }}
           >
             {/* Intro Section */}
             <section style={{ textAlign: 'center', marginBottom: '100px' }}>
-              <m.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1.5, delay: 0.5 }}
+              <div
+                className="anim-intro"
                 style={{ maxWidth: '800px', margin: '0 auto' }}
               >
                 <h1 style={{ 
@@ -137,17 +157,15 @@ function App() {
                   enabling hospitals, clinics, and healthcare providers of all sizes to adopt 
                   advanced technology without cost barriers.
                 </p>
-              </m.div>
+              </div>
             </section>
 
             {/* Product Catalog */}
             <section aria-labelledby="product-catalog">
-              <m.h2
+              <h2
                 id="product-catalog"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
+                ref={catalogHeadingRef}
+                className={`reveal reveal--fade${catalogHeadingVisible ? ' is-visible' : ''}`}
                 style={{ 
                   fontSize: '1rem', 
                   color: 'rgba(0, 0, 0, 0.3)', 
@@ -158,7 +176,7 @@ function App() {
                 }}
               >
                 Product Catalog
-              </m.h2>
+              </h2>
               
               <div style={{ 
                 display: 'grid', 
@@ -170,17 +188,24 @@ function App() {
                 ))}
               </div>
             </section>
-          </m.main>
-        ) : view === 'vision' ? (
-          <VisionDetails key="vision" onBack={() => setView('home')} />
-        ) : view === 'about' ? (
-          <AboutUs key="about" onBack={() => setView('home')} />
-        ) : view === 'terms' ? (
-          <TermsConditions key="terms" onBack={() => setView('home')} />
+          </main>
         ) : (
-          <PrivacyPolicy key="privacy" onBack={() => setView('home')} />
+          <div
+            key={view}
+            className={pageClass(view === 'vision' ? 'vision' : 'content')}
+            onAnimationEnd={handlePageAnimationEnd}
+          >
+            {view === 'vision' ? (
+              <VisionDetails onBack={() => navigate('home')} />
+            ) : view === 'about' ? (
+              <AboutUs onBack={() => navigate('home')} />
+            ) : view === 'terms' ? (
+              <TermsConditions onBack={() => navigate('home')} />
+            ) : (
+              <PrivacyPolicy onBack={() => navigate('home')} />
+            )}
+          </div>
         )}
-      </AnimatePresence>
       </Suspense>
 
       {/* Simple Footer */}
@@ -193,10 +218,10 @@ function App() {
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
           <div style={{ display: 'flex', gap: '30px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <button onClick={() => setView('about')} style={footerLinkStyle}>About Us</button>
-            <button onClick={() => setView('vision')} style={footerLinkStyle}>Our Vision</button>
-            <button onClick={() => setView('terms')} style={footerLinkStyle}>Terms & Conditions</button>
-            <button onClick={() => setView('privacy')} style={footerLinkStyle}>Privacy Policy</button>
+            <button onClick={() => navigate('about')} style={footerLinkStyle}>About Us</button>
+            <button onClick={() => navigate('vision')} style={footerLinkStyle}>Our Vision</button>
+            <button onClick={() => navigate('terms')} style={footerLinkStyle}>Terms & Conditions</button>
+            <button onClick={() => navigate('privacy')} style={footerLinkStyle}>Privacy Policy</button>
           </div>
           
           <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
@@ -208,8 +233,6 @@ function App() {
         <p style={{ marginTop: '20px' }}>&copy; {new Date().getFullYear()} Daiva Health. All rights reserved.</p>
       </footer>
     </div>
-    </MotionConfig>
-    </LazyMotion>
   );
 }
 

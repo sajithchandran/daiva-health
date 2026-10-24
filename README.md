@@ -22,7 +22,7 @@ Daiva Health is building a next-generation ecosystem of digital and AI-powered h
 
 - [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vite.dev/) for development and builds
-- [Framer Motion](https://motion.dev/) for animations (respects the visitor's reduced-motion setting)
+- Plain CSS animations, with a small IntersectionObserver hook for scroll reveals (respects the visitor's reduced-motion setting)
 - [Lucide](https://lucide.dev/) icons
 - [Outfit](https://fonts.google.com/specimen/Outfit) font, self-hosted via [@fontsource/outfit](https://fontsource.org/fonts/outfit) (weights 300, 400, 600, 700)
 
@@ -70,6 +70,8 @@ src/
   main.tsx                 App entry point
   App.tsx                  Home page, product list, footer, and page switching
   index.css                Global styles and theme colors
+  hooks/
+    useReveal.ts           Detects when an element scrolls into view (for reveal animations)
   components/
     Header.tsx             Logo header
     ProductCard.tsx        A product card in the catalog

@@ -1,5 +1,5 @@
-import type { FC, ReactNode } from 'react';
-import { m } from 'framer-motion';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { useReveal } from '../hooks/useReveal';
 
 interface ProductCardProps {
   title: string;
@@ -12,21 +12,21 @@ interface ProductCardProps {
 }
 
 const ProductCard: FC<ProductCardProps> = ({ title, category, description, githubUrl, websiteUrl, icon, delay }) => {
+  const [ref, visible] = useReveal<HTMLElement>();
+
   return (
-    <m.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay }}
-      className="glass-card product-card"
+    <article
+      ref={ref}
+      className={`glass-card product-card reveal${visible ? ' is-visible' : ''}`}
       style={{
+        '--reveal-delay': `${delay}s`,
         padding: '40px',
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
         position: 'relative',
         overflow: 'hidden'
-      }}
+      } as CSSProperties}
     >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
         <div className="product-icon">
@@ -65,7 +65,7 @@ const ProductCard: FC<ProductCardProps> = ({ title, category, description, githu
         background: 'radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%)',
         borderRadius: '50%'
       }} />
-    </m.article>
+    </article>
   );
 };
 
