@@ -1,73 +1,101 @@
-# React + TypeScript + Vite
+# Daiva Health
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The website for **Daiva Health**: free and open-source healthcare software for every hospital, clinic, and doctor.
 
-Currently, two official plugins are available:
+Daiva Health is building a next-generation ecosystem of digital and AI-powered healthcare solutions so that healthcare providers of all sizes can adopt advanced technology without cost barriers. This site presents the product catalog, the vision, and the company's policies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Live site:** https://daiva.health/
+- **GitHub organization:** https://github.com/daivahealth
 
-## React Compiler
+## Product catalog
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Product | Category | What it does | Links |
+|---|---|---|---|
+| **athma CE** | HIS / EMR | Open-source Hospital Information System (HIS) and Electronic Medical Record (EMR) for modern healthcare facilities. | [GitHub](https://github.com/daivahealth/athma-ce) |
+| **OpenMedForm** | AI Forms | AI-powered clinical form builder for designing, scoring, and embedding structured clinical forms and assessments into any EMR/EHR. | [Website](https://openmedform.daiva.health/) · [GitHub](https://github.com/daivahealth/openmedform) |
+| **athma edge** | BCP | Business Continuity solution that keeps clinical care running when the cloud HIS/EMR is unreachable: access active patient data, record notes, and register walk-ins locally. | [GitHub](https://github.com/daivahealth/athma-edge) |
+| **padma** | Clinical Pathways | Standardizes care and improves patient outcomes through evidence-based protocols. | [GitHub](https://github.com/daivahealth/padma) |
+| **aiorta** | Clinical Research | Uses AI and clinical data to accelerate medical discoveries and insights. | [GitHub](https://github.com/daivahealth/aiorta) |
+| **SprintIQ** | Engineering | AI-powered Engineering Intelligence Platform that turns signals from planning, code, CI, and quality tools into delivery metrics, risks, and insights. | [GitHub](https://github.com/daivahealth/sprintiq) |
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/) for development and builds
+- [Framer Motion](https://motion.dev/) for animations (respects the visitor's reduced-motion setting)
+- [Lucide](https://lucide.dev/) icons
+- [Outfit](https://fonts.google.com/specimen/Outfit) font from Google Fonts
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The site is a single-page app with no backend. The build output is plain static files.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Requires **Node.js 20.19+ or 22.12+** (needed by Vite).
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The dev server runs at http://localhost:5173.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the dev server with hot reload |
+| `npm run build` | Type-check and build the production site into `dist/` |
+| `npm run preview` | Serve the built `dist/` locally to check it |
+| `npm run lint` | Run ESLint |
+
+## Project structure
+
 ```
+index.html                 Page shell: SEO meta tags, structured data (JSON-LD), logo preload
+public/                    Files served as-is from the site root
+  logo-600.webp            Header logo (logo-900.webp for high-resolution screens)
+  favicon.png
+  og-image.jpg             Image shown when the site is shared on social media
+  robots.txt               Crawler rules, including AI crawlers
+  sitemap.xml
+  llms.txt                 Plain-text site summary for AI models
+  site.webmanifest
+src/
+  main.tsx                 App entry point
+  App.tsx                  Home page, product list, footer, and page switching
+  index.css                Global styles and theme colors
+  components/
+    Header.tsx             Logo header
+    ProductCard.tsx        A product card in the catalog
+    AboutUs.tsx            About Us page
+    VisionDetails.tsx      Our Vision page
+    TermsConditions.tsx    Terms & Conditions page
+    PrivacyPolicy.tsx      Privacy Policy page
+    PageLayout.tsx         Shared layout for the content pages
+    DivineBackground.tsx   Page background
+```
+
+## Adding or changing a product
+
+Products are listed in the `products` array in `src/App.tsx`. Each entry has a `title`, `category`, `description`, `githubUrl`, an optional `websiteUrl`, an `icon` from `lucide-react`, and an animation `delay`.
+
+Product details also appear in places that search engines and AI assistants read. When you add, rename, or remove a product, update these too:
+
+- `index.html`: the product list in the JSON-LD structured data, the FAQ answers if relevant, and the `<noscript>` fallback list
+- `public/llms.txt`: the product list
+
+## SEO, AEO, and GEO
+
+The site is set up to be found by search engines (SEO), answer engines (AEO), and AI-powered search (GEO):
+
+- **Meta tags** in `index.html`: title, description, canonical URL, Open Graph, and Twitter cards
+- **Structured data** (JSON-LD) in `index.html`: Organization, WebSite, the product catalog as `SoftwareApplication` entries, and an FAQ
+- **`<noscript>` fallback** so crawlers that don't run JavaScript still see the products
+- **`robots.txt`** allowing all crawlers, including GPTBot, ClaudeBot, PerplexityBot, and Google-Extended
+- **`sitemap.xml`** and **`llms.txt`**
+
+All of these use `https://daiva.health/` as the site address. If the domain changes, update it in `index.html`, `public/robots.txt`, `public/sitemap.xml`, and `public/llms.txt`.
+
+## Deployment
+
+Run `npm run build` and deploy the contents of `dist/` to any static host. No server-side code or environment variables are needed.
