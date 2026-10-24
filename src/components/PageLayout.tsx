@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 
 interface PageLayoutProps {
@@ -10,7 +10,7 @@ interface PageLayoutProps {
 
 const PageLayout: FC<PageLayoutProps> = ({ title, children, onBack }) => {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
@@ -46,7 +46,7 @@ const PageLayout: FC<PageLayoutProps> = ({ title, children, onBack }) => {
       <div style={{ lineHeight: '1.8', color: 'rgba(61, 43, 31, 1)' }}>
         {children}
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

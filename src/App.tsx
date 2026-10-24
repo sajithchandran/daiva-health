@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import { m, AnimatePresence, MotionConfig, LazyMotion, domAnimation } from 'framer-motion';
 import { Activity, Layers, Database, FileText, ShieldCheck, Gauge } from 'lucide-react';
 import Header from './components/Header';
 import DivineBackground from './components/DivineBackground';
 import ProductCard from './components/ProductCard';
-import VisionDetails from './components/VisionDetails';
-import AboutUs from './components/AboutUs';
-import TermsConditions from './components/TermsConditions';
-import PrivacyPolicy from './components/PrivacyPolicy';
+
+// Secondary pages load only when opened
+const VisionDetails = lazy(() => import('./components/VisionDetails'));
+const AboutUs = lazy(() => import('./components/AboutUs'));
+const TermsConditions = lazy(() => import('./components/TermsConditions'));
+const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 
 function App() {
   const [view, setView] = useState<'home' | 'vision' | 'about' | 'terms' | 'privacy'>('home');
@@ -89,14 +91,16 @@ function App() {
   ];
 
   return (
+    <LazyMotion features={domAnimation} strict>
     <MotionConfig reducedMotion="user">
     <div style={{ minHeight: '100vh', position: 'relative' }}>
       <DivineBackground />
       <Header />
 
+      <Suspense fallback={null}>
       <AnimatePresence mode="wait">
         {view === 'home' ? (
-          <motion.main 
+          <m.main 
             key="home"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -106,7 +110,7 @@ function App() {
           >
             {/* Intro Section */}
             <section style={{ textAlign: 'center', marginBottom: '100px' }}>
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.5, delay: 0.5 }}
@@ -133,12 +137,12 @@ function App() {
                   enabling hospitals, clinics, and healthcare providers of all sizes to adopt 
                   advanced technology without cost barriers.
                 </p>
-              </motion.div>
+              </m.div>
             </section>
 
             {/* Product Catalog */}
             <section aria-labelledby="product-catalog">
-              <motion.h2
+              <m.h2
                 id="product-catalog"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -154,7 +158,7 @@ function App() {
                 }}
               >
                 Product Catalog
-              </motion.h2>
+              </m.h2>
               
               <div style={{ 
                 display: 'grid', 
@@ -166,7 +170,7 @@ function App() {
                 ))}
               </div>
             </section>
-          </motion.main>
+          </m.main>
         ) : view === 'vision' ? (
           <VisionDetails key="vision" onBack={() => setView('home')} />
         ) : view === 'about' ? (
@@ -177,6 +181,7 @@ function App() {
           <PrivacyPolicy key="privacy" onBack={() => setView('home')} />
         )}
       </AnimatePresence>
+      </Suspense>
 
       {/* Simple Footer */}
       <footer style={{ 
@@ -204,6 +209,7 @@ function App() {
       </footer>
     </div>
     </MotionConfig>
+    </LazyMotion>
   );
 }
 

@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowLeft, Globe, Heart, Shield } from 'lucide-react';
 
 interface VisionDetailsProps {
@@ -8,7 +8,7 @@ interface VisionDetailsProps {
 
 const VisionDetails: FC<VisionDetailsProps> = ({ onBack }) => {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
@@ -91,7 +91,7 @@ const VisionDetails: FC<VisionDetailsProps> = ({ onBack }) => {
       <footer style={{ textAlign: 'center', color: 'rgba(61, 43, 31, 0.4)' }}>
         <p>Joined by the vision of a healthier world.</p>
       </footer>
-    </motion.div>
+    </m.div>
   );
 };
 

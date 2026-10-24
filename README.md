@@ -24,7 +24,7 @@ Daiva Health is building a next-generation ecosystem of digital and AI-powered h
 - [Vite](https://vite.dev/) for development and builds
 - [Framer Motion](https://motion.dev/) for animations (respects the visitor's reduced-motion setting)
 - [Lucide](https://lucide.dev/) icons
-- [Outfit](https://fonts.google.com/specimen/Outfit) font from Google Fonts
+- [Outfit](https://fonts.google.com/specimen/Outfit) font, self-hosted via [@fontsource/outfit](https://fontsource.org/fonts/outfit) (weights 300, 400, 600, 700)
 
 The site is a single-page app with no backend. The build output is plain static files.
 
@@ -60,6 +60,7 @@ public/                    Files served as-is from the site root
   sitemap.xml
   llms.txt                 Plain-text site summary for AI models
   site.webmanifest
+  _headers                 Netlify caching rules
 src/
   main.tsx                 App entry point
   App.tsx                  Home page, product list, footer, and page switching
@@ -98,4 +99,6 @@ All of these use `https://daiva.health/` as the site address. If the domain chan
 
 ## Deployment
 
-Run `npm run build` and deploy the contents of `dist/` to any static host. No server-side code or environment variables are needed.
+The site is hosted on [Netlify](https://www.netlify.com/). Run `npm run build` and publish the contents of `dist/`. No server-side code or environment variables are needed.
+
+`public/_headers` tells Netlify to cache everything under `/assets/` permanently. Vite gives those files a content hash in their name, so any change produces a new URL. This also lets the font preloads (added at build time by the small plugin in `vite.config.ts`) be reused instead of re-checked with the server.
