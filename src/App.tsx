@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, Layers, Database } from 'lucide-react';
+import { Activity, Layers, Database, FileText, ShieldCheck, Gauge } from 'lucide-react';
 import Header from './components/Header';
 import DivineBackground from './components/DivineBackground';
 import ProductCard from './components/ProductCard';
@@ -14,6 +14,14 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const titles = {
+      home: 'Daiva Health — Free & Open-Source Healthcare Software (HIS, EMR, AI)',
+      vision: 'Our Vision | Daiva Health',
+      about: 'About Us | Daiva Health',
+      terms: 'Terms & Conditions | Daiva Health',
+      privacy: 'Privacy Policy | Daiva Health'
+    };
+    document.title = titles[view];
   }, [view]);
 
   const footerLinkStyle = {
@@ -36,17 +44,39 @@ function App() {
       delay: 0.2
     },
     {
+      title: 'OpenMedForm',
+      description: 'An AI-powered clinical form builder for designing, scoring, and embedding structured clinical forms and assessments into any EMR/EHR.',
+      githubUrl: 'https://github.com/daivahealth/openmedform',
+      websiteUrl: 'https://openmedform.daiva.health/',
+      icon: <FileText size={24} />,
+      delay: 0.4
+    },
+    {
+      title: 'athma edge',
+      description: 'A Business Continuity (BCP) solution that keeps clinical care running when the cloud HIS/EMR is unreachable — access active patient data, record notes, and register walk-ins locally.',
+      githubUrl: 'https://github.com/daivahealth/athma-edge',
+      icon: <ShieldCheck size={24} />,
+      delay: 0.6
+    },
+    {
       title: 'padma',
       description: 'A Clinical Pathway solution that enables healthcare providers to standardize care and improve patient outcomes through evidence-based protocols.',
       githubUrl: 'https://github.com/daivahealth/padma',
       icon: <Layers size={24} />,
-      delay: 0.4
+      delay: 0.2
     },
     {
       title: 'aiorta',
       description: 'A Clinical Research platform that leverages AI and clinical data to accelerate medical discoveries and insights.',
       githubUrl: 'https://github.com/daivahealth/aiorta',
       icon: <Database size={24} />,
+      delay: 0.4
+    },
+    {
+      title: 'SprintIQ',
+      description: 'An AI-powered Engineering Intelligence Platform that turns signals from planning, code, CI, and quality tools into delivery metrics, risks, and insights.',
+      githubUrl: 'https://github.com/daivahealth/sprintiq',
+      icon: <Gauge size={24} />,
       delay: 0.6
     }
   ];
@@ -74,7 +104,8 @@ function App() {
                 transition={{ duration: 1.5, delay: 0.5 }}
                 style={{ maxWidth: '800px', margin: '0 auto' }}
               >
-                <p style={{ 
+                <h1 style={{ 
+                  margin: '1em 0',
                   fontSize: '1.8rem', 
                   lineHeight: '1.6', 
                   color: '#1a1a1a', 
@@ -82,7 +113,7 @@ function App() {
                   letterSpacing: '-0.01em'
                 }}>
                   <span style={{ color: 'var(--accent-gold)' }}>Free and open-source</span> healthcare software for every hospital, clinic, and doctor.
-                </p>
+                </h1>
                 <p style={{ 
                   fontSize: '1.1rem', 
                   color: 'rgba(0, 0, 0, 0.5)', 
@@ -98,8 +129,9 @@ function App() {
             </section>
 
             {/* Product Catalog */}
-            <section>
+            <section aria-labelledby="product-catalog">
               <motion.h2
+                id="product-catalog"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}

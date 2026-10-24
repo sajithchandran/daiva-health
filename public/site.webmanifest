@@ -1,0 +1,12 @@
+{
+  "name": "Daiva Health",
+  "short_name": "Daiva Health",
+  "description": "Free and open-source healthcare software for every hospital, clinic, and doctor.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any" }
+  ]
+}

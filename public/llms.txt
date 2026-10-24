@@ -1,0 +1,19 @@
+# Daiva Health
+
+> Daiva Health builds free and open-source healthcare software — a next-generation ecosystem of digital and AI-powered solutions that lets hospitals, clinics and doctors of any size adopt advanced technology without cost barriers. All source code is on GitHub at https://github.com/daivahealth.
+
+## Products
+
+- [athma CE](https://github.com/daivahealth/athma-ce): Open-source Hospital Information System (HIS) and Electronic Medical Record (EMR) for modern healthcare facilities.
+- [OpenMedForm](https://openmedform.daiva.health/): AI-powered clinical form builder for designing, scoring and embedding structured clinical forms and assessments into any EMR/EHR. Source: https://github.com/daivahealth/openmedform
+- [athma edge](https://github.com/daivahealth/athma-edge): Open-source hospital Business Continuity (BCP) solution. When the cloud HIS/EMR is unreachable, staff use it locally to access active patient data, record clinical notes and register walk-in patients.
+- [padma](https://github.com/daivahealth/padma): Clinical Pathway solution that standardizes care and improves patient outcomes through evidence-based protocols.
+- [aiorta](https://github.com/daivahealth/aiorta): Clinical Research platform using AI and clinical data to accelerate medical discoveries and insights.
+- [SprintIQ](https://github.com/daivahealth/sprintiq): AI-powered Engineering Intelligence Platform that turns signals from planning, code, CI and quality tools into delivery metrics, risks and insights.
+
+## Key facts
+
+- Pricing: every product is free and open-source.
+- Audience: hospitals, clinics, doctors and healthcare IT teams of all sizes.
+- Website: https://daiva.health/
+- GitHub organization: https://github.com/daivahealth

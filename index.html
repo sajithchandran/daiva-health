@@ -2,12 +2,240 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>daiva-health</title>
+
+    <!-- Primary SEO -->
+    <title>Daiva Health — Free &amp; Open-Source Healthcare Software (HIS, EMR, AI)</title>
+    <meta name="description" content="Daiva Health builds free and open-source healthcare software: athma CE (HIS/EMR), OpenMedForm (AI clinical form builder), athma edge (hospital BCP), padma (clinical pathways), aiorta (clinical research) and SprintIQ (engineering intelligence)." />
+    <meta name="keywords" content="open source HIS, open source EMR, hospital information system, electronic medical record, clinical form builder, OpenMedForm, hospital business continuity, BCP, clinical pathways, clinical research AI, SprintIQ, engineering intelligence, healthcare AI, Daiva Health, athma" />
+    <meta name="author" content="Daiva Health" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://daiva.health/" />
+
+    <!-- Icons & manifest -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- AI / LLM discovery (GEO) -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly summary" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Daiva Health" />
+    <meta property="og:title" content="Daiva Health — Free &amp; Open-Source Healthcare Software" />
+    <meta property="og:description" content="Open-source HIS/EMR, AI clinical forms, hospital BCP, clinical pathways, clinical research and engineering intelligence — free for every hospital, clinic and doctor." />
+    <meta property="og:url" content="https://daiva.health/" />
+    <meta property="og:image" content="https://daiva.health/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Daiva Health logo" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Daiva Health — Free &amp; Open-Source Healthcare Software" />
+    <meta name="twitter:description" content="Open-source HIS/EMR, AI clinical forms, hospital BCP, clinical pathways, clinical research and engineering intelligence." />
+    <meta name="twitter:image" content="https://daiva.health/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Daiva Health logo" />
+
+    <!-- Structured data (SEO / AEO / GEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://daiva.health/#organization",
+          "name": "Daiva Health",
+          "url": "https://daiva.health/",
+          "logo": "https://daiva.health/favicon.png",
+          "image": "https://daiva.health/og-image.jpg",
+          "description": "Daiva Health builds a free and open-source ecosystem of digital and AI-powered healthcare software so hospitals, clinics and doctors of any size can adopt advanced technology without cost barriers.",
+          "sameAs": ["https://github.com/daivahealth"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://daiva.health/#website",
+          "url": "https://daiva.health/",
+          "name": "Daiva Health",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://daiva.health/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://daiva.health/#webpage",
+          "url": "https://daiva.health/",
+          "name": "Daiva Health — Free & Open-Source Healthcare Software",
+          "isPartOf": { "@id": "https://daiva.health/#website" },
+          "about": { "@id": "https://daiva.health/#organization" },
+          "mainEntity": { "@id": "https://daiva.health/#products" }
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://daiva.health/#products",
+          "name": "Daiva Health Product Catalog",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "SoftwareApplication",
+                "name": "athma CE",
+                "applicationCategory": "HealthApplication",
+                "applicationSubCategory": "Hospital Information System (HIS) / Electronic Medical Record (EMR)",
+                "operatingSystem": "Web",
+                "description": "A comprehensive, open-source Hospital Information System (HIS) and Electronic Medical Record (EMR) for modern healthcare facilities.",
+                "url": "https://github.com/daivahealth/athma-ce",
+                "codeRepository": "https://github.com/daivahealth/athma-ce",
+                "isAccessibleForFree": true,
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+                "publisher": { "@id": "https://daiva.health/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "SoftwareApplication",
+                "name": "OpenMedForm",
+                "applicationCategory": "HealthApplication",
+                "applicationSubCategory": "AI clinical form builder",
+                "operatingSystem": "Web",
+                "description": "An AI-powered clinical form builder for designing, scoring and embedding structured clinical forms and assessments into any EMR/EHR.",
+                "url": "https://openmedform.daiva.health/",
+                "codeRepository": "https://github.com/daivahealth/openmedform",
+                "isAccessibleForFree": true,
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+                "publisher": { "@id": "https://daiva.health/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "SoftwareApplication",
+                "name": "athma edge",
+                "applicationCategory": "HealthApplication",
+                "applicationSubCategory": "Hospital Business Continuity (BCP)",
+                "operatingSystem": "Web",
+                "description": "An open-source Business Continuity (BCP) edge application that lets clinical staff access active patient data, record notes and register walk-in patients when the cloud HIS/EMR is unreachable.",
+                "url": "https://github.com/daivahealth/athma-edge",
+                "codeRepository": "https://github.com/daivahealth/athma-edge",
+                "isAccessibleForFree": true,
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+                "publisher": { "@id": "https://daiva.health/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "SoftwareApplication",
+                "name": "padma",
+                "applicationCategory": "HealthApplication",
+                "applicationSubCategory": "Clinical pathways",
+                "operatingSystem": "Web",
+                "description": "A Clinical Pathway solution that helps healthcare providers standardize care and improve patient outcomes through evidence-based protocols.",
+                "url": "https://github.com/daivahealth/padma",
+                "codeRepository": "https://github.com/daivahealth/padma",
+                "isAccessibleForFree": true,
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+                "publisher": { "@id": "https://daiva.health/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@type": "SoftwareApplication",
+                "name": "aiorta",
+                "applicationCategory": "HealthApplication",
+                "applicationSubCategory": "Clinical research",
+                "operatingSystem": "Web",
+                "description": "A Clinical Research platform that uses AI and clinical data to accelerate medical discoveries and insights.",
+                "url": "https://github.com/daivahealth/aiorta",
+                "codeRepository": "https://github.com/daivahealth/aiorta",
+                "isAccessibleForFree": true,
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+                "publisher": { "@id": "https://daiva.health/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "item": {
+                "@type": "SoftwareApplication",
+                "name": "SprintIQ",
+                "applicationCategory": "DeveloperApplication",
+                "applicationSubCategory": "Engineering intelligence",
+                "operatingSystem": "Web",
+                "description": "An AI-powered Engineering Intelligence Platform that turns signals from planning, code, CI and quality tools into delivery metrics, risks and insights.",
+                "url": "https://github.com/daivahealth/sprintiq",
+                "codeRepository": "https://github.com/daivahealth/sprintiq",
+                "isAccessibleForFree": true,
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+                "publisher": { "@id": "https://daiva.health/#organization" }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://daiva.health/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Daiva Health?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Daiva Health builds free and open-source healthcare software — HIS/EMR, AI clinical forms, hospital business continuity, clinical pathways and clinical research tools — so hospitals, clinics and doctors of any size can adopt advanced technology without cost barriers." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Daiva Health software free?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. All Daiva Health products are free and open-source, with source code published on GitHub at github.com/daivahealth." }
+            },
+            {
+              "@type": "Question",
+              "name": "What is an open-source HIS/EMR from Daiva Health?",
+              "acceptedAnswer": { "@type": "Answer", "text": "athma CE is Daiva Health's open-source Hospital Information System (HIS) and Electronic Medical Record (EMR) for modern healthcare facilities." }
+            },
+            {
+              "@type": "Question",
+              "name": "What is OpenMedForm?",
+              "acceptedAnswer": { "@type": "Answer", "text": "OpenMedForm is an open-source, AI-powered clinical form builder for designing, scoring and embedding structured clinical forms into any EMR/EHR. It is available at openmedform.daiva.health." }
+            },
+            {
+              "@type": "Question",
+              "name": "How can a hospital keep working when its cloud HIS goes down?",
+              "acceptedAnswer": { "@type": "Answer", "text": "athma edge is Daiva Health's open-source Business Continuity (BCP) solution. It keeps a local copy of active patient data inside the hospital so staff can view patient details, write clinical notes and register walk-in patients during a cloud HIS/EMR outage." }
+            },
+            {
+              "@type": "Question",
+              "name": "What is SprintIQ?",
+              "acceptedAnswer": { "@type": "Answer", "text": "SprintIQ is an open-source, AI-powered Engineering Intelligence Platform that collects signals from planning, code, CI and quality tools and turns them into delivery metrics, risks and insights." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <h1>Daiva Health — Free and open-source healthcare software for every hospital, clinic, and doctor</h1>
+      <p>We are building a next-generation ecosystem of digital and AI-powered healthcare solutions, enabling hospitals, clinics, and healthcare providers of all sizes to adopt advanced technology without cost barriers.</p>
+      <h2>Product Catalog</h2>
+      <ul>
+        <li><a href="https://github.com/daivahealth/athma-ce">athma CE</a> — Open-source Hospital Information System (HIS) and Electronic Medical Record (EMR).</li>
+        <li><a href="https://openmedform.daiva.health/">OpenMedForm</a> (<a href="https://github.com/daivahealth/openmedform">GitHub</a>) — AI-powered clinical form builder.</li>
+        <li><a href="https://github.com/daivahealth/athma-edge">athma edge</a> — Hospital Business Continuity (BCP) solution.</li>
+        <li><a href="https://github.com/daivahealth/padma">padma</a> — Clinical Pathway solution.</li>
+        <li><a href="https://github.com/daivahealth/aiorta">aiorta</a> — AI Clinical Research platform.</li>
+        <li><a href="https://github.com/daivahealth/sprintiq">SprintIQ</a> — AI-powered Engineering Intelligence Platform.</li>
+      </ul>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
