@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import { motion } from 'framer-motion';
-import logoImg from '../assets/daiva.png';
 
 const Header: FC = () => {
   return (
@@ -25,7 +24,13 @@ const Header: FC = () => {
         }}
       >
         <img 
-          src={logoImg} 
+          src="/logo-600.webp"
+          srcSet="/logo-600.webp 600w, /logo-900.webp 900w"
+          sizes="300px"
+          width={600}
+          height={335}
+          fetchPriority="high"
+          decoding="async"
           alt="Daiva Health Logo" 
           style={{ 
             width: '100%', 

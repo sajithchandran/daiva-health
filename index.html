@@ -13,6 +13,9 @@
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="https://daiva.health/" />
 
+    <!-- Start fetching the logo before JS loads -->
+    <link rel="preload" as="image" type="image/webp" href="/logo-600.webp" imagesrcset="/logo-600.webp 600w, /logo-900.webp 900w" imagesizes="300px" fetchpriority="high" />
+
     <!-- Icons & manifest -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
