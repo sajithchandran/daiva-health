@@ -54,7 +54,12 @@ The dev server runs at http://localhost:5173.
 index.html                 Page shell: SEO meta tags, structured data (JSON-LD), logo preload
 public/                    Files served as-is from the site root
   logo-600.webp            Header logo (logo-900.webp for high-resolution screens)
-  favicon.png
+  favicon.ico              Browser tab icon (16/32/48 px, transparent)
+  favicon-32x32.png        Tab icon PNGs (favicon-48x48.png is the size Google Search uses)
+  apple-touch-icon.png     iPhone/iPad home-screen icon (180 px)
+  icon-192.png, icon-512.png, icon-512-maskable.png
+                           Android / installed-app icons
+  favicon.png              Full-size "di" mark (source for the icons; used as the logo in structured data)
   og-image.jpg             Image shown when the site is shared on social media
   robots.txt               Crawler rules, including AI crawlers
   sitemap.xml
