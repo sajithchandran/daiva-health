@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Scroll-reveal hiding only applies when JS runs, so the pre-rendered content stays visible without it -->
+    <script>document.documentElement.classList.add('js')</script>
 
     <!-- Primary SEO -->
     <title>Daiva Health — Free &amp; Open-Source Healthcare Software (HIS, EMR, AI)</title>
-    <meta name="description" content="Daiva Health builds free and open-source healthcare software: athma CE (HIS/EMR), OpenMedForm (AI clinical form builder), athma edge (hospital BCP), padma (clinical pathways), aiorta (clinical research) and SprintIQ (engineering intelligence)." />
+    <meta name="description" content="Free, open-source healthcare software: HIS/EMR, AI clinical forms, hospital BCP, clinical pathways, clinical research and engineering intelligence." />
     <meta name="keywords" content="open source HIS, open source EMR, hospital information system, electronic medical record, clinical form builder, OpenMedForm, hospital business continuity, BCP, clinical pathways, clinical research AI, SprintIQ, engineering intelligence, healthcare AI, Daiva Health, athma" />
     <meta name="author" content="Daiva Health" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -54,6 +56,7 @@
           "@type": "Organization",
           "@id": "https://daiva.health/#organization",
           "name": "Daiva Health",
+          "legalName": "Daiva Health Systems Private Limited",
           "url": "https://daiva.health/",
           "logo": "https://daiva.health/favicon.png",
           "image": "https://daiva.health/og-image.jpg",
@@ -227,20 +230,7 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
-    <noscript>
-      <h1>Daiva Health — Free and open-source healthcare software for every hospital, clinic, and doctor</h1>
-      <p>We are building a next-generation ecosystem of digital and AI-powered healthcare solutions, enabling hospitals, clinics, and healthcare providers of all sizes to adopt advanced technology without cost barriers.</p>
-      <h2>Product Catalog</h2>
-      <ul>
-        <li><a href="https://github.com/daivahealth/athma-ce">athma CE</a> — Open-source Hospital Information System (HIS) and Electronic Medical Record (EMR).</li>
-        <li><a href="https://openmedform.daiva.health/">OpenMedForm</a> (<a href="https://github.com/daivahealth/openmedform">GitHub</a>) — AI-powered clinical form builder.</li>
-        <li><a href="https://github.com/daivahealth/athma-edge">athma edge</a> — Hospital Business Continuity (BCP) solution.</li>
-        <li><a href="https://github.com/daivahealth/padma">padma</a> — Clinical Pathway solution.</li>
-        <li><a href="https://github.com/daivahealth/aiorta">aiorta</a> — AI Clinical Research platform.</li>
-        <li><a href="https://github.com/daivahealth/sprintiq">SprintIQ</a> — AI-powered Engineering Intelligence Platform.</li>
-      </ul>
-    </noscript>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

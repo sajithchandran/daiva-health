@@ -23,6 +23,14 @@ function App() {
   const nextView = useRef<View>('home');
   const [catalogHeadingRef, catalogHeadingVisible] = useReveal<HTMLHeadingElement>();
 
+  const leaveTimer = useRef<number | undefined>(undefined);
+
+  const finishLeaving = () => {
+    window.clearTimeout(leaveTimer.current);
+    setLeaving(false);
+    setView(nextView.current);
+  };
+
   const navigate = (next: View) => {
     window.scrollTo(0, 0);
     if (prefersReducedMotion()) {
@@ -31,12 +39,14 @@ function App() {
     }
     nextView.current = next;
     setLeaving(true);
+    // Fallback in case animationend never fires (e.g. the tab is hidden mid-animation)
+    window.clearTimeout(leaveTimer.current);
+    leaveTimer.current = window.setTimeout(finishLeaving, 1000);
   };
 
   const handlePageAnimationEnd = (e: AnimationEvent) => {
     if (e.target !== e.currentTarget || !leaving) return;
-    setLeaving(false);
-    setView(nextView.current);
+    finishLeaving();
   };
 
   const pageClass = (kind: 'home' | 'content' | 'vision') => `page page--${kind}${leaving ? ' is-leaving' : ''}`;
@@ -230,7 +240,7 @@ function App() {
             </a>
           </div>
         </div>
-        <p style={{ marginTop: '20px' }}>&copy; {new Date().getFullYear()} Daiva Health. All rights reserved.</p>
+        <p style={{ marginTop: '20px' }} suppressHydrationWarning>&copy; {new Date().getFullYear()} Daiva Health Systems Private Limited. All rights reserved.</p>
       </footer>
     </div>
   );

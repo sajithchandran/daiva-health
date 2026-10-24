@@ -44,7 +44,7 @@ The dev server runs at http://localhost:5173.
 | Command | What it does |
 |---|---|
 | `npm run dev` | Start the dev server with hot reload |
-| `npm run build` | Type-check and build the production site into `dist/` |
+| `npm run build` | Type-check, build the production site into `dist/`, and pre-render the home page into `dist/index.html` |
 | `npm run preview` | Serve the built `dist/` locally to check it |
 | `npm run lint` | Run ESLint |
 
@@ -66,8 +66,11 @@ public/                    Files served as-is from the site root
   llms.txt                 Plain-text site summary for AI models
   site.webmanifest
   _headers                 Netlify caching rules
+scripts/
+  prerender.mjs            Build step that injects the pre-rendered home page into dist/index.html
 src/
-  main.tsx                 App entry point
+  main.tsx                 Browser entry point (hydrates the pre-rendered page in production)
+  entry-server.tsx         Renders the home page to HTML at build time
   App.tsx                  Home page, product list, footer, and page switching
   index.css                Global styles and theme colors
   hooks/
@@ -89,7 +92,7 @@ Products are listed in the `products` array in `src/App.tsx`. Each entry has a `
 
 Product details also appear in places that search engines and AI assistants read. When you add, rename, or remove a product, update these too:
 
-- `index.html`: the product list in the JSON-LD structured data, the FAQ answers if relevant, and the `<noscript>` fallback list
+- `index.html`: the product list in the JSON-LD structured data, and the FAQ answers if relevant
 - `public/llms.txt`: the product list
 
 ## SEO, AEO, and GEO
@@ -98,7 +101,7 @@ The site is set up to be found by search engines (SEO), answer engines (AEO), an
 
 - **Meta tags** in `index.html`: title, description, canonical URL, Open Graph, and Twitter cards
 - **Structured data** (JSON-LD) in `index.html`: Organization, WebSite, the product catalog as `SoftwareApplication` entries, and an FAQ
-- **`<noscript>` fallback** so crawlers that don't run JavaScript still see the products
+- **Pre-rendered home page**: `npm run build` renders the home page (H1, intro, product cards and links) into the HTML, so crawlers that don't run JavaScript, including most AI crawlers, see the full content
 - **`robots.txt`** allowing all crawlers, including GPTBot, ClaudeBot, PerplexityBot, and Google-Extended
 - **`sitemap.xml`** and **`llms.txt`**
 

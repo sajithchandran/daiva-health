@@ -207,18 +207,18 @@ h1, h2, h3 {
 .page--vision  { --page-duration: 0.6s; --from-y: 20px;  --to-y: -20px; }
 
 /* Scroll reveal: .is-visible is added once the element enters the viewport */
-.reveal {
+.js .reveal {
   opacity: 0;
   translate: 0 30px;
   transition: opacity 0.8s ease var(--reveal-delay, 0s), translate 0.8s ease var(--reveal-delay, 0s);
 }
 
-.reveal--fade {
+.js .reveal--fade {
   translate: none;
   transition-duration: 1s;
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   translate: none;
 }
@@ -241,8 +241,8 @@ h1, h2, h3 {
     animation: none;
   }
 
-  .reveal,
-  .glass-card.reveal {
+  .js .reveal,
+  .js .glass-card.reveal {
     opacity: 1;
     translate: none;
     transition: none;
